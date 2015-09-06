@@ -24,6 +24,8 @@ server.post('/post', function (req, res, next) {
 
 server.get('/notes', function (req, res, next) {
     var note_list = {notes: notes};
+    console.log('Getting Note List...')
+    console.log(note_list)
     res.send(JSON.stringify(note_list))
     return next();
 })
@@ -39,6 +41,7 @@ server.get('/refresh', function (req, res, next) {
             notes = fs.readFileSync('notes.txt').toString().split("\n");
             notes.pop();
             notes.push('END');
+            console.log('Refresh completed')
             res.send({done: 'done'})
             return next();
     });
