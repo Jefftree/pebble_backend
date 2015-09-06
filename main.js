@@ -36,6 +36,9 @@ server.get('/refresh', function (req, res, next) {
             if (error !== null) {
                 console.log('exec error: ' + error);
             }
+            notes = fs.readFileSync('notes.txt').toString().split("\n");
+            notes.pop();
+            notes.push('END');
             res.send({done: 'done'})
             return next();
     });
